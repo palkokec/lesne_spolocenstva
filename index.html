@@ -1,87 +1,534 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pozemkové spoločenstvo SKALKA II</title>
+    <title>Pozemkové spoločenstvo SKALKA II - Informácie pre podielnikov</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <style>
+      :root {
+        --forest-dark: #2d4a2b;
+        --forest-medium: #4a7c59;
+        --forest-light: #7ba882;
+        --earth-brown: #8b6f47;
+        --cream: #f5f1e8;
+        --wood: #d4a574;
+        --shadow: rgba(45, 74, 43, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-          padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--cream) 0%, #e8e4d9 100%);
+        color: #333;
+        line-height: 1.7;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
       }
 
       .top-nav {
-          margin-bottom: 20px;
+        background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px var(--shadow);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .top-nav a {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .top-nav a:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .top-nav a.active {
+        background: var(--wood);
+        border-color: var(--wood);
+      }
+
+      h1 {
+        color: var(--forest-dark);
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px var(--shadow);
       }
 
       .section {
-          margin-bottom: 20px;
+        background: white;
+        padding: 30px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px var(--shadow);
+        border-left: 5px solid var(--forest-medium);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
-  </style>
+
+      .section:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px var(--shadow);
+      }
+
+      h2 {
+        color: var(--forest-dark);
+        border-bottom: 3px solid var(--forest-light);
+        padding-bottom: 10px;
+        margin-top: 0;
+        font-size: 1.8em;
+      }
+
+      h3 {
+        color: var(--forest-medium);
+        margin: 15px 0;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, var(--forest-light) 0%, var(--forest-medium) 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+        box-shadow: 0 4px 8px var(--shadow);
+      }
+
+      .highlight-box h3 {
+        color: white;
+        margin-top: 0;
+      }
+
+      .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        overflow-x: auto;
+        display: block;
+      }
+
+      .info-table table {
+        width: 100%;
+        min-width: 600px;
+      }
+
+      .info-table th {
+        background: var(--forest-dark);
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      .info-table td {
+        padding: 12px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .info-table tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+
+      .info-table tr:hover {
+        background: var(--cream);
+      }
+
+      ul, ol {
+        padding-left: 25px;
+      }
+
+      li {
+        margin: 8px 0;
+      }
+
+      .contact-info {
+        background: var(--cream);
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid var(--wood);
+        margin: 20px 0;
+      }
+
+      .contact-info strong {
+        color: var(--forest-dark);
+      }
+
+      .important-note {
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      .success-note {
+        background: #d4edda;
+        border-left: 5px solid #28a745;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.8em;
+        }
+
+        .section {
+          padding: 20px;
+        }
+
+        .info-table {
+          font-size: 0.9em;
+        }
+      }
+
+      .timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .timeline-item {
+        padding: 15px;
+        margin: 10px 0;
+        background: var(--cream);
+        border-left: 4px solid var(--forest-medium);
+        border-radius: 4px;
+      }
+
+      .timeline-item strong {
+        color: var(--forest-dark);
+      }
+
+      .negative {
+        color: #d32f2f;
+        font-weight: bold;
+      }
+
+      .positive {
+        color: #388e3c;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
-    <div class="top-nav">
-      <a href="index.html" class="pure-button pure-button-primary">SKALKA II</a>
-      <a href="page2.html" class="pure-button">Urbariát Háj</a>
-  </div>
-    <h1>Pozemkové spoločenstvo SKALKA II</h1>
-    <div class="section">
-      <h2>POZVÁNKA </h2>
-<p>
-výbor pozemkového spoločenstva SKALKA II Vás pozýva na výročné valné zhromaždenie (VVZ), ktoré sa bude konať 
-<br/>
-<h3>27.04.2025 /Nedeľa/ o 14:00 hodine </h3>
-<h3>v zasadačke obecného úradu v Kecerovciach </h3>
-Program: 
-<ol>
-<li>Prezentácia účastníkov od 13.30 do 14.00 hod. </li>
-  <li>Otvorenie </li>
-    <li>Voľba overovateľov zápisnice. </li>
-      <li>Voľba návrhovej a sčítacej komisie.</li> 
-      <li>Správa o činnosti PS za rok 2024. </li> 
-        <li>Správa OLH o hospodárení za rok 2024. </li> 
-          <li>Správa Dozornej rady o hospodárení za rok 2024.</li>  
-            <li>Schválenie účtovnej závierky za rok 2024 </li> 
-              <li>Návrh na zánik pozemkového spoločenstva </li> 
-                <li>Diskusia </li> 
-                  <li>Uznesenie </li> 
-                    <li>Záver</li> 
-</ol>
+    <div class="container">
+      <div class="top-nav">
+        <a href="index.html" class="active">SKALKA II</a>
+        <a href="page2.html">Urbariát Háj</a>
+      </div>
 
-Žiadame Vás o účasť na valnom zhromaždení, prípadne splnomocnenie, keďže vzhľadom na finančnú situáciu pozemkového spoločenstva, predpokladaný objem výdavkov na chod spoločenstva a limitovaný zdroj príjmov výbor pozemkového spoločenstva predkladá Valnému zhromaždeniu návrh na zánik pozemkového spoločenstva z dôvodu úpadku spoločenstva .
-</p>
+      <h1>🌲 Pozemkové spoločenstvo SKALKA II 🌲</h1>
 
-    </div>
-    <div class="section">
-    <h2>Výročná správa pozemkového spoločenstva za rok 2024</h2>
-    <p>
-Vážené Valné zhromaždenie. <br/> Predkladám Vám výročnú správu pozemkového spoločenstva za rok 2024. Rok 2024 sme začali značením prebierky spolu s OLH v poraste 233. Vo februári 2024 sa zišiel výbor pozemkového spoločenstva, ktorý sa zaoberal prípravou výročnej schôdze a voľbou do orgánov spoločenstva. Následne sme mali volebné valné zhromaždenie, kde bola odsúhlasená uzávierka za rok 2024 a zvolené nové orgány spoločenstva. Na valnom zhromaždení som informoval o výzve z banky na zrušenie účtu, ktorú sme obdržali a v apríli 2024 nám bol bankový účet zrušený. Finančná hotovosť z bankového účtu bola prevedená do pokladne. Aj napriek tomu sme do apríla na bankových poplatkoch zaplatili skoro 45 Eur. Do dnešného dňa sa nám nepodarilo založiť nový účet vzhľadom na podmienky a poplatky na bankových účtoch, čo však s najväčšou pravdepodobnosťou budeme musieť podstúpiť kvôli transakčnej dani. V rámci šetrenia sme zrušili používanie systému profievidencia. Aj napriek týmto opatreniam je výsledok hospodárenia naďalej v záporných číslach, na čo som poukázal aj na minuloročnom valnom zhromaždení a žiadal zhromaždenie o návrh riešenia.</p>
-<p>
-V priebehu mesiacov máj - jún sme realizovali odovzdanie prebierkového dreva podielnikom. Nepodarilo sa nám žiaľ odovzdať alebo predať všetky podiely a k dnešnému dňu evidujeme ešte 8 neodovzdaných podielov. Prispieva k tomu aj fakt, že kvalita dreva je nízka a cena za dopravu vysoká. V januári r. 2025 sme vyplatili OLH a zároveň nám pribudla nová agenda a výdavok za plán požiarnej ochrany.
-</p>
-<p>
-V marci 2025 sme podali daňové priznanie za rok 2024, pričom sme si uplatnili výnimku z platenia minimálnej dane podľa paragrafu 46b odsek 7e zákona o dani z príjmov. Ak by sme museli platiť minimálnu daň, bolo by to už v tomto roku pre spoločenstvo likvidačné.
-Vzhľadom na vyššie uvedené fakty som oboznámil výbor pozemkového spoločenstva, že v tomto stave už ďalej nie som schopný viesť zodpovedne riadne fungovanie pozemkového spoločenstva a požiadal som výbor o predloženie návrhu na zánik pozemkového spoločenstva z dôvodu úpadku.
-</p>
-</div>
-<div class="section">
-<h2>Dôvodová správa k návrhu na zánik pozemkového spoločenstva</h2>
-<p>Vážené Valné zhromaždenie. Výbor pozemkového spoločenstva predkladá Valnému zhromaždeniu návrh na zánik pozemkového spoločenstva z dôvodu úpadku spoločenstva.
-</p>
-<p>
-Ako už bolo spomenuté vo výročnej správe a v správe o hospodárení pozemkové spoločenstvo vzhľadom na objem príjmov a výdavkov nie je schopné zabezpečiť svoje riadne fungovanie.
-Minimálny objem výdavkov spoločenstva sa pohybuje na cca. 500Eur ak by sme k tomu prirátali platbu minimálnej dane tak je to okolo 850 Eur. Ak odrátame záväzky spoločenstva, tak aktuálny stav pokladničnej hotovosti je menší ako náklady spoločenstva. Zároveň v lesnom pláne ročne môžeme prebierkou vyťažiť iba okolo 40m3 dreva, pričom sa jedná o drevo nepredajné z dôvodu kvality a druhu drevín. Preto v tomto stave nie je možné udržať chod spoločenstva a výbor žiada valné zhromaždenie o návrh riešenia. 
-</p>
-<p>
-Ing. Pavol Jesenský ponúkol výboru riešenie pomocou nájmu s jednotlivými podielovými vlastníkmi za daných podmienok: 
-<ul>
-<li>dĺžka nájmu 10 rokov</li>
-<li>vypočítané nájomné na základe vyhlášky o nájme, lesohospodárskeho plánu  a zohľadnení nákladov na obhospodarovanie lesa je <b>-130,62Eur</b> ročne</li>
-<li>navrhované nájomné je <b>396Eur</b> ročne (33Eur ročne pre 1/12 podielu)</li>
-<li>náklady spojené s obhospodarovaním lesa znáša nájomca</li>
-<li>platnosť nájmu začína dňom zápisu nájomcu do registra obhospodarovateľov lesa</li>
-</ul>
-</p>
-</div>
+      <div class="section">
+        <h2>📢 Aktuálne informácie pre podielnikov</h2>
+        <div class="important-note">
+          <strong>Aktuálny stav:</strong> Pozemkové spoločenstvo SKALKA II bolo zrušené rozhodnutím Okresného úradu Košice-okolie dňa 11.07.2025. Nový obhospodarovateľ Ing. Pavol Jesenský bol zapísaný do evidencie obhospodarovateľov lesa dňa 06.11.2025.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📋 Výročná správa obhospodarovateľa lesa za rok 2025</h2>
+        <strong>Lokalita:</strong> Pozemky pôvodného PS SKALKA II (k.ú. Rankovce)</p>
+
+        <p>Rok 2025 bol pre dotknuté lesné pozemky prelomovým z hľadiska formy obhospodarovania. Na základe rozhodnutia valného zhromaždenia vlastníkov došlo k postupnému zániku Pozemkového spoločenstva SKALKA II a prechodu správy na individuálneho obhospodarovateľa.</p>
+
+        <h3>Kľúčové míľniky roka 2025:</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>27.04.2025:</strong> Výročné valné zhromaždenie PS SKALKA II schválilo zrušenie spoločenstva a určilo Ing. Pavla Jesenského za likvidátora a budúceho obhospodarovateľa.
+          </div>
+          <div class="timeline-item">
+            <strong>11.07.2025:</strong> Rozhodnutie Okresného úradu Košice-okolie (č. OU-KS-PLO2-2025/013550-006) o zrušení spoločenstva a jeho výmaze u správcu dane.
+          </div>
+          <div class="timeline-item">
+            <strong>06.11.2025:</strong> Oficiálny zápis Ing. Pavla Jesenského do evidencie obhospodarovateľov lesa.
+          </div>
+        </div>
+
+        <h3>Hospodárska situácia</h3>
+        <p>V kalendárnom roku 2025 nebola v predmetných lesných dielcoch (najmä dielec 233 a 237) vykonaná žiadna ťažbová ani pestovná činnosť. Tento stav bol spôsobený:</p>
+        <ul>
+          <li>Prebiehajúcim procesom rušenia a likvidácie spoločenstva (právna neistota do času zápisu nového obhospodarovateľa)</li>
+          <li>Personálnymi prekážkami na strane obhospodarovateľa</li>
+          <li>Prioritou zabezpečenia zákonnej kontinuity správy lesa pred samotnou realizáciou hospodárskych opatrení</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h3>Finančný stav k 11.07.2025 (dátum zániku spoločenstva):</h3>
+          <p><strong>Stav pokladne:</strong> 0,00 EUR<br>
+          <strong>Stav bankového účtu:</strong> 0,00 EUR</p>
+          <p>Hlavným výdavkom v procese likvidácie boli právne služby spojené s likvidáciou spoločenstva.</p>
+        </div>
+
+        <h3>Plány pre nasledujúce obdobie</h3>
+        <p>Po úspešnom zápise nového obhospodarovateľa v novembri 2025 je cieľom stabilizácia hospodárenia. Prioritou bude:</p>
+        <ul>
+          <li>Uzatváranie individuálnych dohôd o obhospodarovaní s jednotlivými podielnikmi</li>
+          <li>Obnova hospodárskej činnosti v súlade s plánom OLH (predpokladaná realizácia prebierok)</li>
+          <li>Zabezpečenie distribúcie palivového dreva pre podielnikov za zvýhodnených podmienok</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>💰 Výpočet hospodárskeho výsledku lesa</h2>
+        
+        <p>Nasledujúca tabuľka zobrazuje detailný výpočet ročného hospodárskeho výsledku lesa na základe lesohospodárskeho plánu, vyhlášky o nájme a skutočných nákladov na obhospodarovanie.</p>
+
+        <div class="info-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Položka</th>
+                <th>Hodnota</th>
+                <th>Poznámka</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Celková výmera lesa</td>
+                <td>37,37 ha</td>
+                <td>Súčet všetkých lesných dielcov</td>
+              </tr>
+              <tr>
+                <td>Priemerné zakmenenie</td>
+                <td>67,19 %</td>
+                <td>Vážený priemer podľa výmery</td>
+              </tr>
+              <tr>
+                <td>Dosiahnuteľný ročný výnos porastu (teoretický)</td>
+                <td class="positive">657,46 €</td>
+                <td>Výpočet podľa ANNarp a koeficientov</td>
+              </tr>
+              <tr>
+                <td>Krátený výnos na základe lesohospodárskeho plánu</td>
+                <td class="positive">374,37 €</td>
+                <td>Výpočet Teoretický ročný výnos porastu - povolená ťažba podľa lesohospodárskeho plánu</td>
+              </tr>
+              <tr>
+                <td colspan="3" style="background: var(--forest-light); color: white; font-weight: bold;">Náklady na obhospodarovanie</td>
+              </tr>
+              <tr>
+                <td>Odborná lesná hospodárska činnosť (OLH)</td>
+                <td class="negative">250 €</td>
+                <td>Ročný poplatok</td>
+              </tr>
+              <tr>
+                <td>Požiarna ochrana lesa</td>
+                <td class="negative">100 €</td>
+                <td>Povinné opatrenia</td>
+              </tr>
+              <tr>
+                <td>Účtovníctvo a administratíva</td>
+                <td class="negative">100 €</td>
+                <td>Vedenie účtovníctva</td>
+              </tr>
+              <tr>
+                <td>Poplatky OCÚ Rankovce</td>
+                <td class="negative">65 €</td>
+                <td>Správne poplatky</td>
+              </tr>
+              <tr>
+                <td><strong>Celkové náklady</strong></td>
+                <td class="negative"><strong>505 €</strong></td>
+                <td>Súčet všetkých nákladov</td>
+              </tr>
+              <tr style="background: #ffebee;">
+                <td><strong>VÝSLEDOK HOSPODÁRENIA</strong></td>
+                <td class="negative"><strong>-130,63 €/rok</strong></td>
+                <td><strong>Strata pri riadnom obhospodarovaní</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="important-note">
+          <strong>Vysvetlenie:</strong> Aktuálny teoretický výnos z obhospodarovania lesa vykazuje stratu -130,62 € ročne pri riadnom obhospodarovaní podľa zákonných požiadaviek.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>🌳 Prehľad lesných dielcov (JPRL)</h2>
+        
+        <p>Detailný prehľad jednotlivých lesných dielcov obhospodarovaných v rámci lesného celku LA162:</p>
+
+        <div class="info-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Lesný celok</th>
+                <th>JPRL</th>
+                <th>Výmera (ha)</th>
+                <th>Zakmenenie</th>
+                <th>Vek (roky)</th>
+                <th>Kategória</th>
+                <th>Hlavná drevina</th>
+                <th>Bonita</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>LA162</td>
+                <td>237</td>
+                <td>7,88</td>
+                <td>0,8</td>
+                <td>75</td>
+                <td>H</td>
+                <td>Buk 60%, Javor 25%, Jaseň 15%</td>
+                <td>28</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>236A</td>
+                <td>1,93</td>
+                <td>0,75</td>
+                <td>45</td>
+                <td>H</td>
+                <td>Buk 95%, Jaseň 5%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>236B</td>
+                <td>1,04</td>
+                <td>0,8</td>
+                <td>20</td>
+                <td>H</td>
+                <td>Buk 100%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>233A</td>
+                <td>5,45</td>
+                <td>0,75</td>
+                <td>40</td>
+                <td>H</td>
+                <td>Buk 70%, Jaseň 15%, Javor 10%, Smrek 5%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>233B</td>
+                <td>0,98</td>
+                <td>0,9</td>
+                <td>20</td>
+                <td>H</td>
+                <td>Buk 100%</td>
+                <td>32</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>233C</td>
+                <td>3,00</td>
+                <td>1,0</td>
+                <td>10</td>
+                <td>H</td>
+                <td>Buk 100%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>255A</td>
+                <td>3,76</td>
+                <td>0,8</td>
+                <td>40</td>
+                <td>H</td>
+                <td>Buk 95%, Jaseň 5%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>255B</td>
+                <td>3,81</td>
+                <td>0,8</td>
+                <td>20</td>
+                <td>H</td>
+                <td>Buk 100%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>256A</td>
+                <td>1,73</td>
+                <td>0,8</td>
+                <td>45</td>
+                <td>H (stupeň 3)</td>
+                <td>Buk 35%, Javor 15%, Jaseň 5%, Smrek 25%, Smrekovec 20%</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>256B</td>
+                <td>2,63</td>
+                <td>0,75</td>
+                <td>65</td>
+                <td>H (stupeň 3)</td>
+                <td>Buk 35%, Javor 30%, Jaseň 15%, Smrek 10%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>256C</td>
+                <td>0,71</td>
+                <td>0,8</td>
+                <td>30</td>
+                <td>H (stupeň 3)</td>
+                <td>Buk 95%, Jaseň 5%</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>LA162</td>
+                <td>256D</td>
+                <td>3,66</td>
+                <td>0,8</td>
+                <td>15</td>
+                <td>H (stupeň 3)</td>
+                <td>Buk 100%</td>
+              </tr>
+              <tr style="background: var(--cream); font-weight: bold;">
+                <td colspan="2"><strong>SPOLU</strong></td>
+                <td><strong>37,37 ha</strong></td>
+                <td></td>
+                <td colspan="4"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="success-note">
+          <strong>Poznámky k tabuľke:</strong>
+          <ul>
+            <li><strong>Kategória H:</strong> Hospodársky les</li>
+            <li><strong>Kategória O:</strong> Ochranný les</li>
+            <li><strong>Stupeň ochrany:</strong> Vyššie číslo = prísnejšia ochrana</li>
+            <li><strong>Bonita:</strong> Kvalita stanovišťa</li>
+            <li><strong>Zakmenenie:</strong> Pomer pokrytia plochy korunami stromov (1,0 = 100%)</li>
+          </ul>
+        </div>
+      </div>
   </body>
 </html>
